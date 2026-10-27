@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Growth Supplements — Cards Informativos</title>
+<style>
+:root{
+  --red:#EA0029; --blue:#00A7E1;
+  --bg:#fff; --bg2:#f4f4f4; --line:#e2e2e2; --text:#000; --muted:#6a6a6a;
+  --card:#fff; --shadow:0 10px 30px rgba(0,0,0,.08); --overlay:rgba(0,0,0,.72);
+  --font:'Purista',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0f0f0f; --bg2:#1a1a1a; --line:#2a2a2a; --text:#f5f5f5; --muted:#a3a3a3;
+    --card:#161616; --shadow:0 10px 30px rgba(0,0,0,.5); --overlay:rgba(0,0,0,.82);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0f0f0f; --bg2:#1a1a1a; --line:#2a2a2a; --text:#f5f5f5; --muted:#a3a3a3;
+  --card:#161616; --shadow:0 10px 30px rgba(0,0,0,.5); --overlay:rgba(0,0,0,.82);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font)}
+body{-webkit-font-smoothing:antialiased;line-height:1.35}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+
+/* ---------- Topo ---------- */
+.top{max-width:1120px;margin:0 auto;padding:36px 20px 8px;text-align:center}
+.logo{display:inline-flex;align-items:center;justify-content:center;height:52px}
+.logo img{height:52px;width:auto}
+.logo-fallback{font-weight:700;font-size:26px;letter-spacing:.02em;text-transform:uppercase;line-height:1}
+.logo-fallback span{color:var(--red)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo{background:#fff;padding:10px 18px;border-radius:12px;height:auto}}
+:root[data-theme="dark"] .logo{background:#fff;padding:10px 18px;border-radius:12px;height:auto}
+h1{margin:26px 0 0;font-size:clamp(28px,5vw,44px);font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1}
+h1::after{content:"";display:block;width:64px;height:5px;background:var(--red);margin:14px auto 0;border-radius:3px}
+.tagline{margin:14px 0 0;color:var(--muted);font-size:15px;font-weight:300}
+
+/* ---------- Busca ---------- */
+.search{max-width:680px;margin:28px auto 0;position:relative}
+.search input{width:100%;height:54px;padding:0 48px 0 50px;border:2px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);font-family:inherit;font-size:17px;outline:none;transition:border-color .15s}
+.search input::placeholder{color:var(--muted);font-weight:300}
+.search input:focus{border-color:var(--red)}
+.search svg{position:absolute;top:50%;transform:translateY(-50%);width:22px;height:22px;color:var(--muted);pointer-events:none}
+.search .ico{left:16px}
+.search .clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:38px;height:38px;border:0;background:transparent;color:var(--muted);border-radius:50%;display:none;font-size:22px;line-height:1}
+.search .clear:hover{background:var(--bg2);color:var(--text)}
+.search.has-text .clear{display:block}
+
+/* ---------- Categorias ---------- */
+.cats{max-width:1120px;margin:22px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.cat{display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 18px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--text);font-size:16px;font-weight:500;letter-spacing:.02em;transition:border-color .15s,background .15s,color .15s}
+.cat:hover{border-color:var(--text)}
+.cat .n{min-width:24px;height:24px;padding:0 7px;border-radius:12px;background:var(--bg2);color:var(--muted);font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center}
+.cat[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.cat[aria-pressed="true"] .n{background:rgba(255,255,255,.22);color:#fff}
+
+/* ---------- Admin bar ---------- */
+.admin-bar{margin:22px auto 0;text-align:center}
+.btn{height:46px;padding:0 20px;border-radius:12px;border:0;font-size:15px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;justify-content:center}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{filter:brightness(.92)}
+.btn-ghost{background:transparent;color:var(--text);border:2px solid var(--line)}
+.btn-ghost:hover{border-color:var(--text)}
+
+/* ---------- Status ---------- */
+.status{max-width:1120px;margin:22px auto 0;padding:0 20px;color:var(--muted);font-size:14px;font-weight:300;text-align:center}
+
+/* ---------- Grid ---------- */
+.grid{max-width:1120px;margin:10px auto 0;padding:0 20px 60px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.item{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);cursor:pointer;transition:box-shadow .2s,transform .2s}
+.item:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.item:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.item .pic{aspect-ratio:1399/764;background:var(--bg2);overflow:hidden}
+.item .pic img{width:100%;height:100%;object-fit:cover}
+.item .cap{display:flex;align-items:center;gap:10px;padding:12px 14px 13px;border-top:1px solid var(--line)}
+.item .cap b{font-weight:600;font-size:16px;line-height:1.15}
+.item .cap small{display:block;color:var(--muted);font-size:13px;font-weight:300;margin-top:2px}
+.item .tag{margin-left:auto;flex:none;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--blue);border:1.5px solid var(--blue);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.dl{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.94);color:#000;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.25);transition:background .15s,color .15s,transform .15s;z-index:2}
+.dl:hover{background:var(--red);color:#fff;transform:scale(1.06)}
+.dl svg{width:20px;height:20px}
+
+/* ---------- Empty ---------- */
+.empty{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--muted);border:2px dashed var(--line);border-radius:20px;background:var(--card)}
+.empty .icon{width:80px;height:80px;margin:0 auto 20px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center}
+.empty .icon svg{width:38px;height:38px;color:var(--muted)}
+.empty b{display:block;color:var(--text);font-size:22px;font-weight:600;margin-bottom:8px}
+.empty p{max-width:400px;margin:0 auto;font-size:15px;font-weight:300}
+
+/* ---------- Modal ---------- */
+.modal{position:fixed;inset:0;background:var(--overlay);display:none;z-index:50;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
+.modal.open{display:flex;align-items:center;justify-content:center}
+.panel{position:relative;width:min(1200px,100%);max-height:100%;background:var(--card);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.panel .img{background:var(--card);display:flex;align-items:center;justify-content:center;min-height:0}
+.panel .img img{width:100%;height:auto;max-height:calc(100vh - 32px);object-fit:contain;cursor:zoom-in}
+.info{padding:30px 28px 28px;overflow:auto;border-left:1px solid var(--line);min-height:0}
+.info .kicker{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
+.info h2{margin:4px 0 0;font-size:26px;font-weight:700;line-height:1.1}
+.info .sub{margin:4px 0 0;color:var(--muted);font-size:15px;font-weight:300}
+.info .frase{margin:18px 0 0;padding:14px 16px;border-left:4px solid var(--red);background:var(--bg2);border-radius:0 10px 10px 0;font-size:16px;line-height:1.4}
+.info h3{margin:22px 0 8px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.info ul{margin:0;padding:0;list-style:none}
+.info li{position:relative;padding:5px 0 5px 18px;font-size:15px;line-height:1.35;font-weight:300}
+.info li::before{content:"";position:absolute;left:0;top:12px;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.info li b,.info p b{font-weight:600}
+.info .ind{margin:0;font-size:15px;font-weight:300;line-height:1.45}
+.actions{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.close{position:absolute;top:12px;right:12px;width:42px;height:42px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:26px;line-height:1;z-index:3}
+.close:hover{background:var(--red)}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;border:0;background:rgba(255,255,255,.95);color:#000;box-shadow:0 2px 10px rgba(0,0,0,.35);display:inline-flex;align-items:center;justify-content:center;z-index:3;font-size:26px;line-height:1}
+.nav:hover{background:var(--red);color:#fff}
+.nav.prev{left:12px}.nav.next{right:12px}
+.counter{position:absolute;left:14px;top:14px;background:rgba(0,0,0,.6);color:#fff;font-size:13px;font-weight:600;padding:5px 10px;border-radius:999px;z-index:3}
+.panel .imgwrap{position:relative;min-height:0;display:flex}
+
+/* ---------- Formulários ---------- */
+.form-card{background:var(--card);padding:30px;border-radius:20px;max-width:500px;width:100%;box-shadow:var(--shadow);max-height:92vh;overflow:auto}
+.form-card h2{margin-top:0;font-size:22px;font-weight:700}
+.form-card label{display:block;margin-bottom:4px;font-size:13px;font-weight:500;color:var(--text)}
+.form-card input,.form-card select,.form-card textarea{width:100%;padding:0 12px;border:2px solid var(--line);border-radius:10px;margin-bottom:12px;font-size:15px;font-family:inherit;background:var(--bg);color:var(--text);outline:none;transition:border-color .15s}
+.form-card input,.form-card select{height:44px}
+.form-card textarea{padding:10px 12px;resize:vertical;min-height:60px}
+.form-card input:focus,.form-card select:focus,.form-card textarea:focus{border-color:var(--red)}
+.form-card .help{display:block;color:var(--muted);font-size:12px;margin:-6px 0 12px 0}
+.form-card .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-card .actions{display:flex;gap:10px;margin-top:8px;flex-direction:column}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--line);padding:30px 20px 36px;text-align:center;color:var(--muted);font-size:14px;font-weight:300;margin-top:20px}
+footer b{display:block;color:var(--text);font-weight:600;font-size:16px;letter-spacing:.02em;margin-bottom:4px}
+
+/* ---------- Mobile ---------- */
+@media (max-width:860px){
+  .panel{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);width:100%}
+  .panel .img img{max-height:52vh}
+  .info{border-left:0;border-top:1px solid var(--line);padding:20px 18px 24px}
+  .nav{width:42px;height:42px;font-size:22px}
+}
+@media (max-width:600px){
+  .top{padding:24px 14px 4px}
+  .logo,.logo img{height:40px}
+  .grid{gap:10px;padding:0 12px 48px}
+  .item{border-radius:12px}
+  .item .cap{padding:9px 10px 10px;gap:6px}
+  .item .cap b{font-size:13.5px}
+  .item .cap small{font-size:11.5px}
+  .item .tag{display:none}
+  .dl{width:34px;height:34px;top:7px;right:7px}
+  .dl svg{width:17px;height:17px}
+  .cats{gap:8px;padding:0 12px}
+  .cat{height:40px;padding:0 13px;font-size:14px;gap:6px}
+  .cat .n{min-width:20px;height:20px;font-size:12px}
+  .search{margin-top:22px}
+  .search input{height:50px;font-size:16px}
+  .modal{padding:calc(8px + env(safe-area-inset-top,0px)) 8px calc(8px + env(safe-area-inset-bottom,0px))}
+  .panel{border-radius:14px}
+  .info h2{font-size:22px}
+  .form-card .row{grid-template-columns:1fr}
+  .form-card{padding:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;animation:none !important}
+  .item:hover{transform:none}
+}
+
+/* ---------- Zoom ---------- */
+.zoom{position:fixed;inset:0;background:#fff;z-index:60;display:none;align-items:center;justify-content:center;cursor:zoom-out;overflow:auto;-webkit-overflow-scrolling:touch}
+.zoom.open{display:flex}
+.zoom img{max-width:none;width:auto;height:auto;min-width:100%;object-fit:contain}
+@media (max-width:860px){.zoom img{width:220vw;max-width:none;min-width:0}}
+.zoom .hint{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;font-size:13px;padding:7px 14px;border-radius:999px;pointer-events:none}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="logo">
+    <img src="./img/logo.png" alt="Growth Supplements"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+    <span class="logo-fallback" style="display:none">GROWTH<span>.</span></span>
+  </div>
+  <h1>Cards informativos</h1>
+  <p class="tagline">Material de apoio para influenciadores e prescritores. Entre como admin para adicionar cards.</p>
+
+  <div class="search" id="searchWrap">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Buscar por produto, categoria ou palavra-chave" autocomplete="off" aria-label="Buscar cards">
+    <button class="clear" id="clearBtn" aria-label="Limpar busca" type="button">×</button>
+  </div>
+
+  <nav class="cats" id="cats" aria-label="Categorias"></nav>
+
+  <div class="admin-bar">
+    <button id="loginBtn" class="btn btn-ghost" style="text-transform:none;">Entrar como Admin</button>
+  </div>
+</header>
+
+<p class="status" id="status" aria-live="polite">Carregando cards...</p>
+<main class="grid" id="grid"></main>
+
+<footer>
+  <b>Growth Supplements</b>
+  Cards informativos — material de apoio
+</footer>
+
+<!-- Modal de detalhes -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Detalhes do card">
+  <div class="panel" id="panel"></div>
+</div>
+
+<!-- Modal de login -->
+<div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-label="Login de administrador">
+  <div class="form-card" style="max-width:400px">
+    <h2 style="text-align:center">Login Admin</h2>
+    <form id="loginForm">
+      <label for="loginUser">Usuário</label>
+      <input type="text" id="loginUser" value="admin" autocomplete="username">
+      <label for="loginPass">Senha</label>
+      <input type="password" id="loginPass" autocomplete="current-password">
+      <div class="actions">
+        <button type="submit" class="btn btn-red">Entrar</button>
+        <button type="button" id="closeLogin" class="btn btn-ghost">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Painel admin -->
+<div class="modal" id="adminModal" role="dialog" aria-modal="true" aria-label="Painel do administrador">
+  <div class="form-card" style="max-width:640px">
+    <h2>Painel do Administrador</h2>
+    <p style="color:var(--muted);font-size:14px;margin-top:0">Adicione novos cards. As imagens vão para o ImgBB e os dados para o JSONBin.</p>
+
+    <form id="cardForm">
+      <label for="cardTitle">Título *</label>
+      <input type="text" id="cardTitle" required>
+
+      <div class="row">
+        <div>
+          <label for="cardSubtitle">Subtítulo</label>
+          <input type="text" id="cardSubtitle">
+        </div>
+        <div>
+          <label for="cardCategory">Categoria *</label>
+          <select id="cardCategory" required>
+            <option value="Proteínas">Proteínas</option>
+            <option value="Creatinas">Creatinas</option>
+            <option value="Pré-treinos">Pré-treinos</option>
+            <option value="Vitaminas">Vitaminas</option>
+            <option value="Barras">Barras</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="cardImage">Imagem *</label>
+      <input type="file" id="cardImage" accept="image/*" required>
+      <span class="help">Enviada automaticamente ao ImgBB.</span>
+
+      <label for="cardPhrase">Frase de destaque</label>
+      <textarea id="cardPhrase" rows="2"></textarea>
+
+      <label for="cardBenefits">Benefícios (um por linha)</label>
+      <textarea id="cardBenefits" rows="3" placeholder="Aumenta a força&#10;Melhora a recuperação"></textarea>
+
+      <label for="cardIndications">Indicações</label>
+      <textarea id="cardIndications" rows="2"></textarea>
+
+      <label for="cardUsage">Modo de uso</label>
+      <textarea id="cardUsage" rows="2"></textarea>
+
+      <div class="actions" style="margin-top:16px">
+        <button type="submit" class="btn btn-red">Salvar Card</button>
+        <button type="button" id="closeAdmin" class="btn btn-ghost">Fechar</button>
+      </div>
+      <p id="adminStatus" style="text-align:center;margin-top:12px;font-size:14px"></p>
+    </form>
+  </div>
+</div>
+
+<!-- Zoom -->
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <img id="zoomImg" alt="">
+  <div class="hint">Toque para fechar</div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   CONFIGURAÇÃO — SUBSTITUA PELAS SUAS CHAVES
+   ══════════════════════════════════════════════════════════════ */
+const JSONBIN_MASTER_KEY = '$2a$10$k5yoNnGcYVgXP5ynEya1L.JCvGLqSB09uhPtFsyFfBuRd2znDNasS';   // Ex.: '$2b$10$...'
+const JSONBIN_BIN_ID     = '6ae0da0cffd5d1605390769a';       // Ex.: '65f1a2b3...'
+const IMGBB_API_KEY      = '5c0a6b5494c21e4e392f7fd946d4fd64';  // Ex.: 'abc123def...'
+
+/* Credenciais do admin */
+const ADMIN_USER = 'admin';
+const ADMIN_PASS = 'admin123';
+
+/* ══════════════════════════════════════════════════════════════
+   ESTADO
+   ══════════════════════════════════════════════════════════════ */
+let allCards      = [];
+let currentFilter = 'Todos';
+let searchTerm    = '';
+let isAdmin       = false;
+
+const $  = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const CATEGORIES = ['Todos','Proteínas','Creatinas','Pré-treinos','Vitaminas','Barras'];
+
+/* ══════════════════════════════════════════════════════════════
+   HELPERS
+   ══════════════════════════════════════════════════════════════ */
+function uid() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+/* ══════════════════════════════════════════════════════════════
+   JSONBIN
+   ══════════════════════════════════════════════════════════════ */
+async function loadFromJSONBin() {
+  const res = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
+    headers: { 'X-Master-Key': JSONBIN_MASTER_KEY }
+  });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const data = await res.json();
+  return Array.isArray(data.record) ? data.record : [];
+}
+async function saveToJSONBin(cards) {
+  const res = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Master-Key': JSONBIN_MASTER_KEY
+    },
+    body: JSON.stringify(cards)
+  });
+  if (!res.ok) throw new Error('Falha ao salvar no JSONBin');
+  return res.json();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   IMGBB
+   ══════════════════════════════════════════════════════════════ */
+async function uploadImageToImgBB(file) {
+  const fd = new FormData();
+  fd.append('image', file);
+  const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+    method: 'POST',
+    body: fd
+  });
+  const data = await res.json();
+  if (!data.success) throw new Error(data.error?.message || 'Falha no upload');
+  return data.data.url;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CARREGAR
+   ══════════════════════════════════════════════════════════════ */
+async function loadCards() {
+  const statusEl = $('#status');
+  statusEl.textContent = 'Carregando cards...';
+  try {
+    allCards = await loadFromJSONBin();
+    renderCards();
+    updateCategoryCounts();
+  } catch (e) {
+    console.error(e);
+    allCards = [];
+    statusEl.textContent = '⚠️ Não foi possível conectar ao servidor. Verifique as chaves de API.';
+    renderCards();
+    updateCategoryCounts();
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RENDER
+   ══════════════════════════════════════════════════════════════ */
+function renderCards() {
+  const grid     = $('#grid');
+  const statusEl = $('#status');
+  grid.innerHTML = '';
+
+  // Estado vazio global
+  if (allCards.length === 0) {
+    statusEl.textContent = 'Nenhum card cadastrado ainda.';
+    grid.innerHTML = `
+      <div class="empty">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <path d="M9 9h6v6H9z"/>
+            <path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/>
+          </svg>
+        </div>
+        <b>Nenhum card cadastrado</b>
+        <p>Entre como administrador (botão acima) para adicionar os primeiros cards informativos.</p>
+      </div>`;
+    return;
+  }
+
+  const filtered = allCards.filter(card => {
+    const matchCat = currentFilter === 'Todos' || card.category === currentFilter;
+    const q = searchTerm.toLowerCase();
+    const matchSrc = !q ||
+      (card.title    && card.title.toLowerCase().includes(q))    ||
+      (card.subtitle && card.subtitle.toLowerCase().includes(q)) ||
+      (card.category && card.category.toLowerCase().includes(q)) ||
+      (card.phrase   && card.phrase.toLowerCase().includes(q));
+    return matchCat && matchSrc;
+  });
+
+  if (filtered.length === 0) {
+    statusEl.textContent = `0 cards em ${currentFilter === 'Todos' ? 'todas as categorias' : currentFilter}`;
+    grid.innerHTML = `<div class="empty"><b>Nada encontrado</b><p>Tente ajustar a busca ou a categoria.</p></div>`;
+    return;
+  }
+
+  statusEl.textContent = `${filtered.length} card(s) em ${currentFilter === 'Todos' ? 'todas as categorias' : currentFilter}`;
+
+  filtered.forEach((card, idx) => {
+    const article = document.createElement('article');
+    article.className = 'item';
+    article.tabIndex  = 0;
+
+    // Botão download
+    const dl = document.createElement('a');
+    dl.className = 'dl';
+    dl.href = card.imageUrl || '#';
+    dl.setAttribute('download', (card.title || 'card') + '.jpg');
+    dl.setAttribute('aria-label', `Baixar ${card.title || 'card'}`);
+    dl.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg>`;
+    dl.addEventListener('click', e => e.stopPropagation());
+    article.appendChild(dl);
+
+    // Imagem
+    const pic = document.createElement('div');
+    pic.className = 'pic';
+    const img = document.createElement('img');
+    img.src = card.imageUrl;
+    img.alt = card.title || 'Card';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    pic.appendChild(img);
+    article.appendChild(pic);
+
+    // Legenda
+    const cap = document.createElement('div');
+    cap.className = 'cap';
+    cap.innerHTML = `
+      <div>
+        <b>${escapeHtml(card.title)}</b>
+        <small>${escapeHtml(card.subtitle || '')}</small>
+      </div>
+      <span class="tag">${escapeHtml(card.category)}</span>
+    `;
+    article.appendChild(cap);
+
+    article.addEventListener('click', () => openModal(card, idx, filtered));
+    article.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card, idx, filtered); }
+    });
+
+    grid.appendChild(article);
+  });
+}
+
+function updateCategoryCounts() {
+  const counts = {};
+  CATEGORIES.forEach(c => counts[c] = 0);
+  counts['Todos'] = allCards.length;
+  allCards.forEach(card => {
+    if (counts[card.category] !== undefined && card.category !== 'Todos') counts[card.category]++;
+  });
+
+  const nav = $('#cats');
+  nav.innerHTML = '';
+  CATEGORIES.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cat';
+    btn.setAttribute('aria-pressed', cat === currentFilter ? 'true' : 'false');
+    btn.innerHTML = `${cat} <span class="n">${counts[cat] || 0}</span>`;
+    btn.addEventListener('click', () => {
+      currentFilter = cat;
+      $$('.cat').forEach(b => b.setAttribute('aria-pressed','false'));
+      btn.setAttribute('aria-pressed','true');
+      renderCards();
+    });
+    nav.appendChild(btn);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MODAL
+   ══════════════════════════════════════════════════════════════ */
+let modalCards = [], modalIndex = 0;
+
+function openModal(card, index, cardsList) {
+  modalCards = cardsList;
+  modalIndex = index;
+  const panel = $('#panel');
+
+  const benefitsHtml    = (card.benefits || []).map(b => `<li>${escapeHtml(b)}</li>`).join('');
+  const indicationsHtml = card.indications ? `<h3>Indicações</h3><p class="ind">${escapeHtml(card.indications)}</p>` : '';
+  const usageHtml       = card.usage       ? `<h3>Modo de uso</h3><p class="ind">${escapeHtml(card.usage)}</p>` : '';
+
+  panel.innerHTML = `
+    <div class="imgwrap">
+      <button class="close" id="modalClose" aria-label="Fechar">×</button>
+      <span class="counter">${modalIndex + 1} / ${modalCards.length}</span>
+      <button class="nav prev" id="modalPrev" aria-label="Anterior">‹</button>
+      <button class="nav next" id="modalNext" aria-label="Próximo">›</button>
+      <div class="img"><img src="${card.imageUrl}" alt="${escapeHtml(card.title)}" id="modalImg"></div>
+    </div>
+    <div class="info">
+      <span class="kicker">${escapeHtml(card.category)}</span>
+      <h2>${escapeHtml(card.title)}</h2>
+      <p class="sub">${escapeHtml(card.subtitle || '')}</p>
+      ${card.phrase ? `<p class="frase">${escapeHtml(card.phrase)}</p>` : ''}
+      ${benefitsHtml ? `<h3>Benefícios</h3><ul>${benefitsHtml}</ul>` : ''}
+      ${indicationsHtml}
+      ${usageHtml}
+      <div class="actions">
+        <a class="btn btn-red" href="${card.imageUrl}" download>Baixar imagem</a>
+        ${isAdmin ? `<button class="btn btn-ghost" id="deleteCard">Excluir card</button>` : ''}
+      </div>
+    </div>
+  `;
+
+  $('#modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  $('#modalClose').addEventListener('click', closeModal);
+  $('#modalPrev').addEventListener('click', e => { e.stopPropagation(); navigateModal(-1); });
+  $('#modalNext').addEventListener('click', e => { e.stopPropagation(); navigateModal(1); });
+
+  const modalImg = $('#modalImg');
+  if (modalImg) modalImg.addEventListener('click', () => {
+    $('#zoomImg').src = modalImg.src;
+    $('#zoom').classList.add('open');
+  });
+
+  if (isAdmin) {
+    const delBtn = $('#deleteCard');
+    if (delBtn) delBtn.addEventListener('click', async () => {
+      if (!isAdmin) return;
+      if (!confirm(`Excluir o card "${card.title}"?`)) return;
+      try {
+        const updated = allCards.filter(c => c.id !== card.id);
+        await saveToJSONBin(updated);
+        allCards = updated;
+        closeModal();
+        renderCards();
+        updateCategoryCounts();
+      } catch (err) {
+        alert('Erro ao excluir: ' + err.message);
+      }
+    });
+  }
+
+  document.addEventListener('keydown', handleModalKey);
+}
+
+function closeModal() {
+  $('#modal').classList.remove('open');
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', handleModalKey);
+}
+
+function navigateModal(dir) {
+  modalIndex = (modalIndex + dir + modalCards.length) % modalCards.length;
+  openModal(modalCards[modalIndex], modalIndex, modalCards);
+}
+
+function handleModalKey(e) {
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowLeft') navigateModal(-1);
+  if (e.key === 'ArrowRight') navigateModal(1);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ZOOM
+   ══════════════════════════════════════════════════════════════ */
+$('#zoom').addEventListener('click', () => {
+  $('#zoom').classList.remove('open');
+  $('#zoomImg').src = '';
+});
+
+/* ══════════════════════════════════════════════════════════════
+   BUSCA
+   ══════════════════════════════════════════════════════════════ */
+$('#q').addEventListener('input', e => {
+  searchTerm = e.target.value;
+  $('#searchWrap').classList.toggle('has-text', searchTerm.length > 0);
+  renderCards();
+});
+$('#clearBtn').addEventListener('click', () => {
+  $('#q').value = '';
+  searchTerm = '';
+  $('#searchWrap').classList.remove('has-text');
+  renderCards();
+});
+
+/* ══════════════════════════════════════════════════════════════
+   LOGIN / LOGOUT
+   ══════════════════════════════════════════════════════════════ */
+const loginBtn   = $('#loginBtn');
+const loginModal = $('#loginModal');
+const adminModal = $('#adminModal');
+
+loginBtn.addEventListener('click', () => {
+  if (isAdmin) {
+    isAdmin = false;
+    loginBtn.textContent = 'Entrar como Admin';
+    loginBtn.classList.remove('btn-red');
+    loginBtn.classList.add('btn-ghost');
+    adminModal.classList.remove('open');
+    closeModal();
+  } else {
+    loginModal.classList.add('open');
+    $('#loginPass').value = '';
+  }
+});
+
+$('#closeLogin').addEventListener('click', () => loginModal.classList.remove('open'));
+
+$('#loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const u = $('#loginUser').value.trim();
+  const p = $('#loginPass').value.trim();
+  if (u === ADMIN_USER && p === ADMIN_PASS) {
+    isAdmin = true;
+    loginModal.classList.remove('open');
+    loginBtn.textContent = 'Sair (Admin)';
+    loginBtn.classList.remove('btn-ghost');
+    loginBtn.classList.add('btn-red');
+    adminModal.classList.add('open');
+    $('#adminStatus').textContent = '';
+  } else {
+    alert('Usuário ou senha inválidos.');
+  }
+});
+
+$('#closeAdmin').addEventListener('click', () => adminModal.classList.remove('open'));
+
+/* ══════════════════════════════════════════════════════════════
+   ADICIONAR CARD
+   ══════════════════════════════════════════════════════════════ */
+$('#cardForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  if (!isAdmin) { alert('Faça login como admin.'); return; }
+
+  const title    = $('#cardTitle').value.trim();
+  const subtitle = $('#cardSubtitle').value.trim();
+  const category = $('#cardCategory').value;
+  const file     = $('#cardImage').files[0];
+  const phrase   = $('#cardPhrase').value.trim();
+  const benefitsRw = $('#cardBenefits').value.trim();
+  const indications= $('#cardIndications').value.trim();
+  const usage    = $('#cardUsage').value.trim();
+
+  if (!title || !category || !file) {
+    alert('Preencha título, categoria e imagem.');
+    return;
+  }
+
+  const statusEl = $('#adminStatus');
+  statusEl.style.color = 'var(--muted)';
+
+  try {
+    statusEl.textContent = 'Enviando imagem...';
+    const imageUrl = await uploadImageToImgBB(file);
+
+    statusEl.textContent = 'Salvando card...';
+    const benefits = benefitsRw ? benefitsRw.split('\n').map(s => s.trim()).filter(Boolean) : [];
+
+    const newCard = {
+      id: uid(),
+      title, subtitle, category, imageUrl, phrase, benefits, indications, usage,
+      createdAt: Date.now()
+    };
+
+    const updated = [...allCards, newCard];
+    await saveToJSONBin(updated);
+    allCards = updated;
+
+    statusEl.style.color = 'green';
+    statusEl.textContent = '✅ Card adicionado com sucesso!';
+
+    $('#cardForm').reset();
+    renderCards();
+    updateCategoryCounts();
+
+    setTimeout(() => adminModal.classList.remove('open'), 1000);
+  } catch (err) {
+    console.error(err);
+    statusEl.style.color = 'red';
+    statusEl.textContent = '❌ ' + err.message;
+  }
+});
+
+/* ══════════════════════════════════════════════════════════════
+   INIT
+   ══════════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', loadCards);
+</script>
+</body>
+</html>
